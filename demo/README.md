@@ -6,6 +6,37 @@
 - Maven
 - Node.js y npm
 
+## Levantar el sistema con contenedores separados de docker
+
+- Pull de las imagenes `postgres` e `i-spring-empleados`
+
+- Crear la network para comunicacion entre los contenedores
+
+```
+docker network create empleados-net  
+```
+
+- Creacion de los contenedores:
+
+```BD
+docker run -d --name c-db-nomina --network empleados-net \
+  -e POSTGRES_DB=nomina \
+  -e POSTGRES_USER=admin \
+  -e POSTGRES_PASSWORD=1234 \
+  -p 5432:5432 \
+  -v "$(pwd)/bd/bd.sql:/docker-entrypoint-initdb.d/nomina.sql:ro" \
+  postgres
+```
+
+```App spring
+docker run -d --name c-spring-empleados --network empleados-net \
+  -p 8080:8080 \
+  -e SPRING_DATASOURCE_URL=jdbc:postgresql://c-db-nomina:5432/nomina \
+  -e SPRING_DATASOURCE_USERNAME=admin \
+  -e SPRING_DATASOURCE_PASSWORD=1234 \
+  i-spring-empleados
+```
+
 ## Preparacion de Spring Boot
 
 1. Lógica dentro de las vistas manejada con `thymeleaf`
@@ -27,8 +58,7 @@ Despues, la aplicacion puede ejecutarse sin conexion:
 ./mvnw -o spring-boot:run
 ```
 
-
-## Ejecucion
+## Ejecucion del fuente de spring
 
 Dentro de la carpeta "demo"
 
