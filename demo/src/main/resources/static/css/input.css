@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@source "../../templates";
+
+@plugin "daisyui" {
+    themes: corporate --default, light, dark, cupcake, synthwave, retro;
+}

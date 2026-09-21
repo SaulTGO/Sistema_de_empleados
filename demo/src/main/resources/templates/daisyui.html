@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="corporate">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Panel daisyUI</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body class="min-h-screen bg-base-200 text-base-content">
+    <div class="drawer lg:drawer-open">
+        <input id="main-drawer" type="checkbox" class="drawer-toggle">
+        <div class="drawer-content">
+            <header class="navbar border-b border-base-300 bg-base-100 px-6">
+                <div class="flex-none lg:hidden"><label for="main-drawer" class="btn btn-square btn-ghost" aria-label="Abrir menu"><span class="text-xl">&#9776;</span></label></div>
+                <div class="flex-1"><div><p class="text-xs font-semibold uppercase tracking-wider text-primary">Workspace</p><h1 class="text-xl font-bold">Norte Studio</h1></div></div>
+                <div class="flex-none gap-2"><select id="themePicker" class="select select-bordered select-sm w-32" aria-label="Seleccionar tema"><option value="corporate">Corporate</option><option value="light">Light</option><option value="dark">Dark</option><option value="cupcake">Cupcake</option><option value="synthwave">Synthwave</option><option value="retro">Retro</option></select><div class="avatar placeholder"><div class="w-9 rounded-full bg-primary text-primary-content"><span>AG</span></div></div></div>
+            </header>
+
+            <main class="mx-auto max-w-7xl p-6 lg:p-10">
+                <div class="mb-8 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between"><div><div class="badge badge-secondary mb-3">daisyUI + Tailwind</div><h2 class="text-4xl font-bold tracking-tight">Resumen del equipo</h2><p class="mt-2 text-base-content/70">Componentes con estados, colores semanticos y tema intercambiable.</p></div><button class="btn btn-primary" onclick="taskDialog.showModal()">+ Nueva tarea</button></div>
+
+                <section class="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+                    <div class="stat rounded-box bg-base-100 shadow"><div class="stat-figure text-primary"><div class="radial-progress text-primary" style="--value:72;" role="progressbar">72%</div></div><div class="stat-title">Progreso</div><div class="stat-value">72%</div><div class="stat-desc">+8% esta semana</div></div>
+                    <div class="stat rounded-box bg-base-100 shadow"><div class="stat-title">Tareas abiertas</div><div class="stat-value text-secondary">24</div><div class="stat-desc">6 vencen hoy</div></div>
+                    <div class="stat rounded-box bg-base-100 shadow"><div class="stat-title">Horas del equipo</div><div class="stat-value">128</div><div class="stat-desc text-success">Dentro del objetivo</div></div>
+                    <div class="stat rounded-box bg-base-100 shadow"><div class="stat-title">Satisfaccion</div><div class="stat-value text-accent">94%</div><div class="stat-desc">Basado en 18 respuestas</div></div>
+                </section>
+
+                <section class="mt-6 grid gap-6 xl:grid-cols-[1.5fr_1fr]">
+                    <div class="card bg-base-100 shadow-xl"><div class="card-body"><div class="flex items-center justify-between"><h3 class="card-title">Proyectos activos</h3><div class="join"><button class="btn btn-sm join-item btn-active">Todos</button><button class="btn btn-sm join-item">Mios</button></div></div><div class="overflow-x-auto"><table class="table"><thead><tr><th>Proyecto</th><th>Equipo</th><th>Avance</th><th>Estado</th></tr></thead><tbody><tr><td><div class="font-bold">Portal de clientes</div><div class="text-sm opacity-50">Actualizado hoy</div></td><td>Producto</td><td><progress class="progress progress-primary w-24" value="84" max="100"></progress></td><td><span class="badge badge-success">En tiempo</span></td></tr><tr><td><div class="font-bold">App movil</div><div class="text-sm opacity-50">Actualizado ayer</div></td><td>Ingenieria</td><td><progress class="progress progress-warning w-24" value="58" max="100"></progress></td><td><span class="badge badge-warning">Riesgo</span></td></tr><tr><td><div class="font-bold">Base de conocimiento</div><div class="text-sm opacity-50">Actualizado lunes</div></td><td>Soporte</td><td><progress class="progress progress-info w-24" value="37" max="100"></progress></td><td><span class="badge badge-ghost">Planificado</span></td></tr></tbody></table></div></div></div>
+                    <div class="card bg-base-100 shadow-xl"><div class="card-body"><h3 class="card-title">Actividad reciente</h3><ul class="timeline timeline-vertical"><li><div class="timeline-start">09:42</div><div class="timeline-middle"><span class="badge badge-success badge-xs"></span></div><div class="timeline-end timeline-box">Maria completo una revision</div><hr class="bg-success"></li><li><hr class="bg-success"><div class="timeline-start">08:15</div><div class="timeline-middle"><span class="badge badge-warning badge-xs"></span></div><div class="timeline-end timeline-box">Diego agrego 3 tareas</div><hr></li><li><hr><div class="timeline-start">Ayer</div><div class="timeline-middle"><span class="badge badge-info badge-xs"></span></div><div class="timeline-end timeline-box">Nueva reunion programada</div></li></ul></div></div>
+                </section>
+
+                <section class="mt-6 card bg-base-100 shadow-xl"><div class="card-body"><div class="tabs tabs-lifted"><input type="radio" name="dashboard-tabs" class="tab" aria-label="Pendientes" checked><div class="tab-content border-base-300 bg-base-100 p-6"><div class="alert alert-warning"><span>Hay 6 tareas que necesitan atencion hoy.</span><button class="btn btn-sm">Revisar</button></div></div><input type="radio" name="dashboard-tabs" class="tab" aria-label="Completadas"><div class="tab-content border-base-300 bg-base-100 p-6"><div class="alert alert-success"><span>18 tareas completadas esta semana.</span></div></div><input type="radio" name="dashboard-tabs" class="tab" aria-label="Archivadas"><div class="tab-content border-base-300 bg-base-100 p-6"><div class="alert alert-info"><span>3 proyectos archivados recientemente.</span></div></div></div></div></section>
+            </main>
+        </div>
+        <aside class="drawer-side z-20"><label for="main-drawer" class="drawer-overlay"></label><div class="min-h-full w-72 bg-base-100 p-6"><a class="mb-10 block text-2xl font-black text-primary" href="/daisyui">NORTE<span class="text-secondary">/</span></a><ul class="menu gap-2"><li><a class="active">Resumen general</a></li><li><a>Mis tareas <span class="badge badge-sm">12</span></a></li><li><a>Calendario</a></li><li><a>Equipo</a></li><li><a>Configuracion</a></li></ul><div class="divider"></div><div class="rounded-box bg-base-200 p-4"><p class="font-bold">Prueba los temas</p><p class="mt-1 text-sm opacity-70">Usa el selector superior para cambiar la apariencia.</p></div></div></aside>
+    </div>
+    <dialog id="taskDialog" class="modal"><div class="modal-box"><h3 class="text-lg font-bold">Crear nueva tarea</h3><label class="form-control mt-4"><div class="label"><span class="label-text">Nombre</span></div><input class="input input-bordered" placeholder="Ej. Revisar prototipo"></label><label class="form-control mt-2"><div class="label"><span class="label-text">Prioridad</span></div><select class="select select-bordered"><option>Normal</option><option>Alta</option><option>Urgente</option></select></label><div class="modal-action"><form method="dialog"><button class="btn">Cancelar</button><button class="btn btn-primary ml-2">Guardar tarea</button></form></div></div><form method="dialog" class="modal-backdrop"><button>Cerrar</button></form></dialog>
+    <script>
+        document.getElementById('themePicker').addEventListener('change', event => {
+            document.documentElement.setAttribute('data-theme', event.target.value);
+        });
+    </script>
+</body>
+</html>

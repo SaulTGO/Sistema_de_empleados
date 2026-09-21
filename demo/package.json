@@ -1,0 +1,12 @@
+{
+  "name": "demo",
+  "private": true,
+  "scripts": {
+    "build:css": "tailwindcss -i ./src/main/resources/static/css/input.css -o ./src/main/resources/static/css/app.css --minify"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.0.0",
+    "daisyui": "^5.0.0",
+    "tailwindcss": "^4.0.0"
+  }
+}
