@@ -8,11 +8,16 @@
 
 ## Levantar el sistema con contenedores separados de docker
 
-*Para levnatar el sistema es necesario tener arriba el contenedor de la BD antes de la app web*
+*Para levantar el sistema es necesario tener arriba el contenedor de la BD antes de la app web*
 - Pull de las imagenes `postgres` e `i-spring-nomina`
 
 ```
 docker pull saulgo/i-spring-empleados
+```
+- Creacion de una red (En revision)
+
+```
+docker network create empleados-net
 ```
 
 - Creacion de los contenedores:
