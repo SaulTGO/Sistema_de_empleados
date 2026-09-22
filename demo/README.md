@@ -38,7 +38,7 @@ docker run -d --name c-spring-nomina --network empleados-net \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://c-db-nomina:5432/nomina \
   -e SPRING_DATASOURCE_USERNAME=admin \
   -e SPRING_DATASOURCE_PASSWORD=1234 \
-  i-spring-empleados
+  i-spring-nomina
 ```
 
 El servidor de la pagina levanta en el puerto *8080*
