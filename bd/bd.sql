@@ -51,7 +51,7 @@ CREATE SEQUENCE public.empleado_id_seq
     CACHE 1;
 
 
-ALTER SEQUENCE public.empleado_id_seq OWNER TO saul;
+ALTER SEQUENCE public.empleado_id_seq OWNER TO admin;
 
 --
 -- Name: empleado_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: saul
