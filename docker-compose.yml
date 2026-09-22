@@ -1,0 +1,44 @@
+services:
+  db:
+    image: postgres:18
+    container_name: c-db-nomina
+    environment:
+      POSTGRES_DB: nomina
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: 1234
+    volumes:
+      - ./bd/bd.sql:/docker-entrypoint-initdb.d/nomina.sql:ro
+      - postgres-data-v18:/var/lib/postgresql
+    networks:
+      - db-net
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d nomina"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  web:
+    build:
+      context: ./demo
+    image: i-spring-nomina
+    container_name: c-spring-nomina
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/nomina
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: 1234
+    ports:
+      - "8080:8080"
+    networks:
+      - web-net
+      - db-net
+
+networks:
+  web-net:
+  db-net:
+    internal: true
+
+volumes:
+  postgres-data-v18:
