@@ -8,6 +8,7 @@
 
 ## Levantar el sistema con contenedores separados de docker
 
+*Para levnatar el sistema es necesario tener arriba el contenedor de la BD antes de la app web*
 - Pull de las imagenes `postgres` e `i-spring-nomina`
 
 ```
