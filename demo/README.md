@@ -10,10 +10,8 @@
 
 - Pull de las imagenes `postgres` e `i-spring-nomina`
 
-- Crear la network para comunicacion entre los contenedores
-
 ```
-docker network create empleados-net  
+docker pull saulgo/i-spring-empleados
 ```
 
 - Creacion de los contenedores:
