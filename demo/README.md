@@ -8,7 +8,7 @@
 
 ## Levantar el sistema con contenedores separados de docker
 
-- Pull de las imagenes `postgres` e `i-spring-empleados`
+- Pull de las imagenes `postgres` e `i-spring-nomina`
 
 - Crear la network para comunicacion entre los contenedores
 
@@ -29,7 +29,7 @@ docker run -d --name c-db-nomina --network empleados-net \
 ```
 
 ```App spring
-docker run -d --name c-spring-empleados --network empleados-net \
+docker run -d --name c-spring-nomina --network empleados-net \
   -p 8080:8080 \
   -e SPRING_DATASOURCE_URL=jdbc:postgresql://c-db-nomina:5432/nomina \
   -e SPRING_DATASOURCE_USERNAME=admin \
@@ -50,7 +50,15 @@ La direccion completa de la pagina entonces sera:
 1. Lógica dentro de las vistas manejada con `thymeleaf`
 2. Estilos "inline" manejada con DaisyUI
 
-## Estilos CSS sin conexion
+## Ejecucion del fuente de spring
+
+Dentro de la carpeta "demo"
+
+```bash
+./mvnw spring-boot:run
+```
+
+## Estilos CSS sin conexion (En revision)
 
 Los estilos se compilan localmente y Spring Boot los sirve desde `static/css`.
 La instalacion de dependencias y la primera compilacion requieren internet:
@@ -63,15 +71,9 @@ npm run build:css
 Despues, la aplicacion puede ejecutarse sin conexion:
 
 ```bash
-./mvnw -o spring-boot:run
-```
-
-## Ejecucion del fuente de spring
-
-Dentro de la carpeta "demo"
-
-```bash
 ./mvnw spring-boot:run
 ```
+
+
 
 
