@@ -36,7 +36,7 @@ CREATE TABLE public.empleado (
 );
 
 
-ALTER TABLE public.empleado OWNER TO saul;
+ALTER TABLE public.empleado OWNER TO admin;
 
 --
 -- Name: empleado_id_seq; Type: SEQUENCE; Schema: public; Owner: saul
