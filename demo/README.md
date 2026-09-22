@@ -1,4 +1,4 @@
-# Practica 2: vistas con Bootstrap y daisyUI
+# Proyecto. Sistema de Nomina
 
 ## Requisitos del sistema
 
@@ -15,10 +15,11 @@
 ```bash
 docker network create empleados-net
 ```
+
 - Pull de las imagenes `postgres` e `i-spring-nomina`
-docker network create empleados-net
-docker pull saulgo/i-spring-nomina
+
 ```
+docker pull saulgo/i-spring-nomina
 ```
 
 - Creacion de los contenedores:
