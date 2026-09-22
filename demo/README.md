@@ -6,47 +6,44 @@
 - Maven
 - Node.js y npm
 
-## Levantar el sistema con contenedores separados de docker
+## Levantar el sistema con contenedores separados de Docker
 
-*Para levantar el sistema es necesario tener arriba el contenedor de la BD antes de la app web.*
+El archivo `docker-compose.yml` crea dos redes:
 
-- Crear la red que compartirán PostgreSQL y Spring Boot:
+- `web-net`: conecta la aplicación con la red del host.
+- `db-net`: red interna que conecta la aplicación con PostgreSQL. PostgreSQL no pertenece a `web-net` y no publica ningún puerto al host.
+
+La aplicación web pertenece a ambas redes, por lo que puede acceder a PostgreSQL usando el nombre de servicio `db`. PostgreSQL solo pertenece a `db-net`, así que no puede iniciar conexiones hacia la red web.
+
+Desde la raíz del repositorio, construye la imagen web y levanta los dos contenedores:
 
 ```bash
-docker network create empleados-net
+docker compose up --build -d
 ```
 
-- Pull de las imagenes `postgres` e `i-spring-nomina`
+Para comprobar el estado:
 
-```
-docker pull saulgo/i-spring-nomina
-```
-
-- Creacion de los contenedores:
-
-```BD
-docker run -d --name c-db-nomina --network empleados-net \
-  -e POSTGRES_DB=nomina \
-  -e POSTGRES_USER=admin \
-  -e POSTGRES_PASSWORD=1234 \
-  -p 5432:5432 \
-  -v "$(pwd)/bd/bd.sql:/docker-entrypoint-initdb.d/nomina.sql:ro" \
-  postgres
+```bash
+docker compose ps
+docker compose logs -f web
 ```
 
-```App spring
-docker run -d --name c-spring-nomina --network empleados-net \
-  -p 8080:8080 \
-  -e SPRING_DATASOURCE_URL=jdbc:postgresql://c-db-nomina:5432/nomina \
-  -e SPRING_DATASOURCE_USERNAME=admin \
-  -e SPRING_DATASOURCE_PASSWORD=1234 \
-  i-spring-nomina
-```
-
-El servidor de la pagina levanta en el puerto *8080*. La app web se levantara en el host local.
+El servidor de la página queda disponible en el puerto `8080`:
 
 ```
 http://localhost:8080/Empleados
+```
+
+Para detener los contenedores:
+
+```bash
+docker compose down
+```
+
+Para detenerlos y borrar también los datos persistidos de PostgreSQL:
+
+```bash
+docker compose down -v
 ```
 
 ## Preparacion de Spring Boot
