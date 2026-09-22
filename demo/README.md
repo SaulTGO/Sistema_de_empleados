@@ -8,16 +8,17 @@
 
 ## Levantar el sistema con contenedores separados de docker
 
-*Para levantar el sistema es necesario tener arriba el contenedor de la BD antes de la app web*
-- Pull de las imagenes `postgres` e `i-spring-nomina`
+*Para levantar el sistema es necesario tener arriba el contenedor de la BD antes de la app web.*
 
+- Crear la red que compartirán PostgreSQL y Spring Boot:
+
+```bash
+docker network create empleados-net
 ```
+- Pull de las imagenes `postgres` e `i-spring-nomina`
+docker network create empleados-net
 docker pull saulgo/i-spring-nomina
 ```
-- Creacion de una red (En revision)
-
-```
-docker network create empleados-net
 ```
 
 - Creacion de los contenedores:
@@ -41,12 +42,10 @@ docker run -d --name c-spring-nomina --network empleados-net \
   i-spring-nomina
 ```
 
-El servidor de la pagina levanta en el puerto *8080*
-La direccion correspondera con la IP del contenedor.
-La direccion completa de la pagina entonces sera:
+El servidor de la pagina levanta en el puerto *8080*. La app web se levantara en el host local.
 
 ```
-[Ip del contenedor]:8080
+http://localhost:8080/Empleados
 ```
 
 ## Preparacion de Spring Boot
