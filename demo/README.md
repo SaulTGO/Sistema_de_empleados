@@ -37,6 +37,14 @@ docker run -d --name c-spring-empleados --network empleados-net \
   i-spring-empleados
 ```
 
+El servidor de la pagina levanta en el puerto *8080*
+La direccion correspondera con la IP del contenedor.
+La direccion completa de la pagina entonces sera:
+
+```
+[Ip del contenedor]:8080
+```
+
 ## Preparacion de Spring Boot
 
 1. Lógica dentro de las vistas manejada con `thymeleaf`
@@ -66,4 +74,4 @@ Dentro de la carpeta "demo"
 ./mvnw spring-boot:run
 ```
 
-El servidor de la pagina levanta en el puerto *8080*
+
