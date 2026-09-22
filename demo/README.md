@@ -12,7 +12,7 @@
 - Pull de las imagenes `postgres` e `i-spring-nomina`
 
 ```
-docker pull saulgo/i-spring-empleados
+docker pull saulgo/i-spring-nomina
 ```
 - Creacion de una red (En revision)
 
