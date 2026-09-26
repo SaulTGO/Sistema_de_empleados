@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import com.empleados.demo.repository.EmpleadoRepository;
 import com.empleados.demo.domain.Empleado;
 import java.util.List;
-
+import java.util.Optional;
 
 @Service 
 public class EmpleadoRepositoryService{
@@ -22,6 +22,14 @@ public class EmpleadoRepositoryService{
 
     public void nuevoEmpleado (Empleado empleado){
         empleadoRepository.save(empleado);
+    }
+
+    public Optional<Empleado> buscarEmpleado(Long id){
+        return empleadoRepository.findById(id);
+    }
+
+    public void eliminarEmpleado(Long id){
+        empleadoRepository.deleteById(id);
     }
 
 }

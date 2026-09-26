@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es" xmlns:th="http://www.thymeleaf.org" data-theme="corporate">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,18 +9,22 @@
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
+
 <body class="min-h-screen bg-base-200 text-base-content">
     <div class="container mx-auto px-4 py-10">
         <div class="mb-8 flex items-center justify-between">
             <div>
                 <h1 class="text-4xl font-bold">Empleados</h1>
             </div>
-            <a class="btn btn-primary" th:href="@{/nuevo-empleado}">Nuevo empleado</a>
+            <a class="btn btn-primary" th:href="@{/empleado/nuevo-empleado}">Nuevo empleado</a>
         </div>
 
-        <div th:if="${mensaje}" class="alert alert-success alert-soft mb-6 shadow-lg border border-success/30 rounded-xl">
-            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <div th:if="${mensaje}"
+            class="alert alert-success alert-soft mb-6 shadow-lg border border-success/30 rounded-xl">
+            <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             <span class="font-medium" th:text="${mensaje}">Empleado guardado correctamente</span>
         </div>
@@ -28,32 +33,49 @@
             <div class="card-body">
                 <div class="flex items-center justify-between mb-4">
                     <h2 class="card-title">Lista de empleados</h2>
-                    <div class="badge badge-primary badge-lg">Total: <span th:text="${#lists.size(empleados)}">0</span></div>
+                    <div class="badge badge-primary badge-lg">Total: <span th:text="${#lists.size(empleados)}">0</span>
+                    </div>
                 </div>
 
                 <div class="overflow-x-auto">
                     <table class="table table-zebra">
                         <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Nombre</th>
-                            <th>Apellido</th>
-                            <th>Email</th>
-                        </tr>
+                            <tr>
+                                <th>ID</th>
+                                <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Email</th>
+                                <th>Acciones</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr th:if="${#lists.isEmpty(empleados)}">
-                            <td colspan="4" class="text-center py-6 text-base-content/60">
-                                No hay empleados registrados.
-                            </td>
-                        </tr>
+                            <tr th:if="${#lists.isEmpty(empleados)}">
+                                <td colspan="5" class="text-center py-6 text-base-content/60">
+                                    No hay empleados registrados.
+                                </td>
+                            </tr>
 
-                        <tr th:each="empleado : ${empleados}">
-                            <td th:text="${empleado.id}">1</td>
-                            <td th:text="${empleado.nombre}">Juan</td>
-                            <td th:text="${empleado.apellido}">Pérez</td>
-                            <td th:text="${empleado.email}">juan@empresa.com</td>
-                        </tr>
+                            <tr th:each="empleado : ${empleados}">
+                                <td th:text="${empleado.id}">1</td>
+                                <td th:text="${empleado.nombre}">Juan</td>
+                                <td th:text="${empleado.apellido}">Pérez</td>
+                                <td th:text="${empleado.email}">juan@empresa.com</td>
+                                <td>
+                                    <div class="flex gap-2">
+                                        <a class="btn btn-secondary btn-sm"
+                                            th:href="@{/empleado/{id}/editar(id=${empleado.id})}">
+                                            Editar
+                                        </a>
+                                        <form th:action="@{/empleado/{id}/eliminar(id=${empleado.id})}"
+                                            method="post"
+                                            onsubmit="return confirm('¿Seguro que deseas eliminar este empleado?');">
+                                            <button type="submit" class="btn btn-error btn-sm">
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -61,4 +83,5 @@
         </div>
     </div>
 </body>
+
 </html>
