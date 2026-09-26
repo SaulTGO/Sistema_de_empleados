@@ -31,7 +31,11 @@ docker compose logs -f web
 El servidor de la página queda disponible en el puerto `8080`:
 
 ```
-http://localhost:8080/Empleados
+http://localhost:8080/empleado
+```
+En caso de que la pagina no presente las acciones de "editar" y "Eliminar", reconstruir las imagenes
+```bash
+docker compose build
 ```
 
 Para detener los contenedores:
