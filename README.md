@@ -105,22 +105,4 @@ Dentro de la carpeta "demo"
 ./mvnw spring-boot:run
 ```
 
-## Estilos CSS sin conexion (En revision)
-
-Los estilos se compilan localmente y Spring Boot los sirve desde `static/css`.
-La instalacion de dependencias y la primera compilacion requieren internet:
-
-```bash
-npm install
-npm run build:css
-```
-
-Despues, la aplicacion puede ejecutarse sin conexion:
-
-```bash
-./mvnw spring-boot:run
-```
-
-
-
 
