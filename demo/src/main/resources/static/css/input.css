@@ -3,5 +3,5 @@
 @source "../../templates";
 
 @plugin "daisyui" {
-    themes: corporate --default, light, dark, cupcake, synthwave, retro;
+    themes: nord --default, light, dark, cupcake, synthwave, retro;
 }
